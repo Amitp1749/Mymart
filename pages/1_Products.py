@@ -1,10 +1,12 @@
 import streamlit as st
+from PIL import Image, ImageOps   # ✅ ये जरूरी है
 
 st.set_page_config(layout="wide")
 
+# ---------- Image uniform function ----------
 def load_uniform_image(path, size=(300, 300)):
-    img = Image.open(path)
-    img = ImageOps.contain(img, size)  # ratio maintain
+    img = Image.open(path).convert("RGB")
+    img = ImageOps.contain(img, size)
     background = Image.new("RGB", size, (255, 255, 255))
     offset = ((size[0] - img.size[0]) // 2, (size[1] - img.size[1]) // 2)
     background.paste(img, offset)
@@ -44,12 +46,7 @@ for i, product in enumerate(display_list):
         uniform_img = load_uniform_image(product["img"])
 
         st.image(uniform_img, use_container_width=True)
-
         st.markdown(f"**{product['name']}**")
-        st.markdown(f"₹ {product['price']}")
-
-        if st.button(f"Add {product['name']}", key=product['name'], use_container_width=True):
-            st.success(f"{product['name']} जोड़ा गया!")
         st.markdown(f"₹ {product['price']}")
 
         if st.button(f"Add {product['name']}", key=product['name'], use_container_width=True):
