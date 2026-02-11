@@ -1,12 +1,6 @@
-import os
 import streamlit as st
 
-st.write("Current working dir:", os.getcwd())
-st.write("Repo files:", os.listdir())
-st.write("Images folder exists?:", os.path.exists("images"))
-
-if os.path.exists("images"):
-    st.write("Images inside images/:", os.listdir("images"))
+st.set_page_config(layout="wide")
 
 # ---------- Products Database ----------
 all_products = [
@@ -39,20 +33,33 @@ cols = st.columns(3)
 for i, product in enumerate(display_list):
     with cols[i % 3]:
 
-        img_html = f"""
-        <div style="height:230px; display:flex; align-items:center; justify-content:center;
-                    border:1px solid #eee; border-radius:10px; background:white; padding:10px;">
-            <img src="{product['img']}" style="max-height:200px; max-width:100%; object-fit:contain;">
-        </div>
-        """
+        # Fixed image frame (uniform size)
+        st.markdown(
+            """
+            <style>
+            .img-frame {
+                height:220px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                border:1px solid #eee;
+                border-radius:10px;
+                background:white;
+                padding:10px;
+                margin-bottom:10px;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
 
-        st.markdown(img_html, unsafe_allow_html=True)
+        with st.container():
+            st.markdown('<div class="img-frame">', unsafe_allow_html=True)
+            st.image(product["img"], use_container_width=True)
+            st.markdown('</div>', unsafe_allow_html=True)
 
         st.markdown(f"**{product['name']}**")
         st.markdown(f"₹ {product['price']}")
 
         if st.button(f"Add {product['name']}", key=product['name'], use_container_width=True):
             st.success(f"{product['name']} जोड़ा गया!")
-
-        if st.button(f"Add {product['name']}", key=product['name'], use_container_width=True):
-            st.success(f"{product['name']} जोड़ा गया!")जोड़ा गया!")
