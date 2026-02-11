@@ -1,122 +1,72 @@
 import streamlit as st
+from PIL import Image
+import time
 
 st.set_page_config(page_title="मेरा सुपर मार्ट", layout="wide")
 
-# ---------- Custom CSS ----------
-st.markdown("""
-<style>
-.hero-box {
-    height: 420px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    border-radius: 15px;
-    border: 1px solid #eee;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    padding: 15px;
-}
-.hero-box img {
-    max-height: 380px;
-    max-width: 100%;
-    object-fit: contain;
-}
-.center-text {
-    text-align: center;
-}
-.feature-card {
-    padding: 20px;
-    border-radius: 12px;
-    background: #f9fafb;
-    text-align: center;
-    border: 1px solid #eee;
-}
-</style>
-""", unsafe_allow_html=True)
+# ---------- Image Uniform Function ----------
+def make_uniform_image(path, size=(1000, 420)):
+    img = Image.open(path).convert("RGBA")
+    canvas = Image.new("RGBA", size, (255, 255, 255, 255))
 
-# ----- Images -----
+    img.thumbnail((size[0]-40, size[1]-40))
+
+    x = (size[0] - img.width) // 2
+    y = (size[1] - img.height) // 2
+
+    canvas.paste(img, (x, y), img)
+    return canvas
+
+# ---------- Images ----------
 images = ["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.jpg"]
 
-if "img_index" not in st.session_state:
-    st.session_state.img_index = 0
-
-# ----- Title -----
-st.markdown("""
-<h1 class='center-text'>🛒 मेरा सुपर मार्ट</h1>
-<h3 class='center-text'>किफायती दाम, बेहतरीन सामान!</h3>
-""", unsafe_allow_html=True)
-
-st.write("")
-
-# ----- Image Frame (Uniform Size + Center) -----
-st.markdown("<div class='hero-box'>", unsafe_allow_html=True)
-st.image(images[st.session_state.img_index])
-st.markdown("</div>", unsafe_allow_html=True)
-
-# ----- Buttons -----
-col1, col2, col3 = st.columns([1,2,1])
-
-with col1:
-    if st.button("⬅️ Previous"):
-        st.session_state.img_index = (st.session_state.img_index - 1) % len(images)
-
-with col3:
-    if st.button("Next ➡️"):
-        st.session_state.img_index = (st.session_state.img_index + 1) % len(images)
+# ---------- Title ----------
+st.markdown(
+    """
+    <h1 style='text-align:center;'>🛒 मेरा सुपर मार्ट</h1>
+    <h3 style='text-align:center;'>किफायती दाम, बेहतरीन सामान!</h3>
+    """,
+    unsafe_allow_html=True
+)
 
 st.write("")
 
-# ----- Offers Section -----
+# ---------- Auto Image Slider ----------
+placeholder = st.empty()
+
+for img in images:
+    uniform_img = make_uniform_image(img)
+    placeholder.image(uniform_img, use_container_width=True)
+    time.sleep(2)
+
+st.write("")
+
+# ---------- Offers Section ----------
 st.header("🔥 आज के धमाकेदार ऑफर्स")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("""
-    <div class='feature-card'>
-        <h4>📦 Combo Offer</h4>
-        <p>5 किलो चावल पर 1 किलो चीनी फ्री!</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.success("📦 **Combo Offer:** 5 किलो चावल पर 1 किलो चीनी फ्री!")
 
 with col2:
-    st.markdown("""
-    <div class='feature-card'>
-        <h4>💰 Cashback Offer</h4>
-        <p>₹1000 की शॉपिंग पर ₹100 की छूट।</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.info("💰 **Cashback:** ₹1000 की शॉपिंग पर ₹100 की छूट।")
 
 st.write("")
 
-# ----- Extra Section to fill homepage -----
+# ---------- Features Section ----------
 st.header("⭐ हमारी खास सुविधाएँ")
 
 c1, c2, c3 = st.columns(3)
 
 with c1:
-    st.markdown("""
-    <div class='feature-card'>
-        🚚 <b>Free Delivery</b><br>
-        2 KM के अंदर फ्री डिलीवरी
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("### 🚚 Free Delivery\n5 KM के अंदर फ्री डिलीवरी")
 
 with c2:
-    st.markdown("""
-    <div class='feature-card'>
-        💳 <b>Easy Payment</b><br>
-        UPI / Cash / Card स्वीकार
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("### 💳 Easy Payment\nUPI / Cash / Card स्वीकार")
 
 with c3:
-    st.markdown("""
-    <div class='feature-card'>
-        🕒 <b>Fast Service</b><br>
-        30 मिनट में सामान आपके घर
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("### 🕒 Fast Service\n30 मिनट में सामान आपके घर")
 
 st.write("")
-st.info("बाएं तरफ (Sidebar) से 'Products' पर जाकर सामानों की लिस्ट देखें।")
+st.info("बाएं तरफ (Sidebar) से **Products** पर जाकर सामानों की लिस्ट देखें।")
