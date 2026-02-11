@@ -18,8 +18,8 @@ all_products = [
     {"name": "सरसों तेल", "cat": "Oil (तेल)", "price": 186, "img": "pages/sarson.jpg"},
     {"name": "कोलम चावल", "cat": "Rice (चावल)", "price": 320, "img": "pages/kolam.jpg"},
     {"name": "रिफाइंड तेल", "cat": "Oil (तेल)", "price": 130, "img": "pages/refined.jpg"},
-    {"name": "बादाम", "cat": "Dry Fruits", "price": 800,"per kg", "img": "pages/badam.jpg"},
-    {"name": "काजू प्रीमियम", "cat": "Dry Fruits", "price": 1200,"per kg", "img": "pages/kaju.jpg"},
+    {"name": "बादाम", "cat": "Dry Fruits", "price": 800, "img": "pages/badam.jpg"},
+    {"name": "काजू प्रीमियम", "cat": "Dry Fruits", "price": 1200, "img": "pages/kaju.jpg"},
 ]
 
 # ---------- Sidebar ----------
