@@ -10,12 +10,12 @@ if os.path.exists("images"):
 
 # ---------- Products Database ----------
 all_products = [
-    {"name": "बासमती चावल", "cat": "Rice (चावल)", "price": 90, "img": "pages/basmati.jpg"=400},
-    {"name": "सरसों तेल", "cat": "Oil (तेल)", "price": 160, "img": "pages/sarson.jpg"=400},
-    {"name": "कोलम चावल", "cat": "Rice (चावल)", "price": 70, "img": "pages/kolam.jpg"=400},
-    {"name": "रिफाइंड तेल", "cat": "Oil (तेल)", "price": 150, "img": "pages/refined.jpg"=400},
-    {"name": "बादाम", "cat": "Dry Fruits", "price": 600, "img": "pages/badam.jpg"=400},
-    {"name": "काजू प्रीमियम", "cat": "Dry Fruits", "price": 800, "img": "pages/kaju.jpg"=400},
+    {"name": "बासमती चावल", "cat": "Rice (चावल)", "price": 90, "img": "pages/basmati.jpg"},
+    {"name": "सरसों तेल", "cat": "Oil (तेल)", "price": 160, "img": "pages/sarson.jpg"},
+    {"name": "कोलम चावल", "cat": "Rice (चावल)", "price": 70, "img": "pages/kolam.jpg"},
+    {"name": "रिफाइंड तेल", "cat": "Oil (तेल)", "price": 150, "img": "pages/refined.jpg"},
+    {"name": "बादाम", "cat": "Dry Fruits", "price": 600, "img": "pages/badam.jpg"},
+    {"name": "काजू प्रीमियम", "cat": "Dry Fruits", "price": 800, "img": "pages/kaju.jpg"},
 ]
 
 # ---------- Sidebar ----------
