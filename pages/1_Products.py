@@ -1,40 +1,58 @@
 import streamlit as st
 
-st.title("📦 सामानों की सूची (Product List)")
+st.set_page_config(layout="wide")
 
-# कैटेगरी के हिसाब से सामान
-category = st.selectbox("कैटेगरी चुनें", ["किराना (Grocery)", "पर्सनल केयर", "सब्जियां"])
+st.markdown("""
+<style>
+.product-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-if category == "किराना (Grocery)":
-    data = {
-        "आइटम": ["बासमती चावल", "अरहर दाल", "आशीर्वाद आटा", "रिफाइंड तेल"],
-        "मात्रा": ["1kg", "1kg", "5kg", "1L"],
-        "रेट": ["₹90", "₹140", "₹220", "₹110"]
-    }
-    st.table(data)
+.product-name {
+    font-size: 20px;
+    font-weight: bold;
+}
 
-elif category == "पर्सनल केयर":
-    st.write("साबुन, शैम्पू और अन्य सामान यहाँ उपलब्ध हैं।")
+.product-price {
+    font-size: 18px;
+    color: green;
+    margin: 10px 0;
+}
 
-# आर्डर बटन
-st.button("व्हाट्सएप पर आर्डर भेजें")
+.custom-button {
+    background-color: #ff4b4b;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+</style>
+""", unsafe_allow_html=True)
 
-# 6. पूछताछ और सुझाव फॉर्म
-st.write("---")
-st.header("📝 आपके सुझाव या पूछताछ")
+st.title("🛒 Premium Product Store")
 
-with st.form("enquiry_form"):
-    name = st.text_input("आपका नाम")
-    email = st.text_input("आपका ईमेल या फोन नंबर")
-    message = st.text_area("आपका संदेश या सुझाव")
-    
-    # सबमिट बटन
-    submitted = st.form_submit_button("संदेश भेजें")
-    
-    if submitted:
-        if name and message:
-            st.success(f"धन्यवाद {name}! आपका सुझाव हमें मिल गया है।")
-            # यहाँ हम डेटा को सिर्फ स्क्रीन पर दिखा रहे हैं
-            st.write("आपका संदेश:", message)
-        else:
-            st.error("कृपया अपना नाम और संदेश भरें।")
+products = [
+    {"name": "बासमती चावल", "price": 90},
+    {"name": "अरहर दाल", "price": 140},
+    {"name": "आशीर्वाद आटा", "price": 220},
+    {"name": "रिफाइंड तेल", "price": 110},
+]
+
+cols = st.columns(2)
+
+for i, product in enumerate(products):
+    with cols[i % 2]:
+        st.markdown(f"""
+        <div class="product-card">
+            <div class="product-name">{product['name']}</div>
+            <div class="product-price">₹ {product['price']}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        if st.button("🛒 Add to Cart", key=product["name"]):
+            st.success(f"{product['name']} added to cart")
