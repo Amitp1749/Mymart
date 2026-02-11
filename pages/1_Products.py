@@ -38,9 +38,27 @@ cols = st.columns(3)
 
 for i, product in enumerate(display_list):
     with cols[i % 3]:
-        st.image(product["img"], use_container_width=True)
+
+        st.markdown(
+            f"""
+            <div style="
+                height:230px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                border:1px solid #eee;
+                border-radius:10px;
+                background:white;
+                padding:10px;
+            ">
+                <img src="{product['img']}" style="max-height:200px; max-width:100%; object-fit:contain;">
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
         st.markdown(f"**{product['name']}**")
         st.markdown(f"₹ {product['price']}")
-        
+
         if st.button(f"Add {product['name']}", key=product['name'], use_container_width=True):
-            st.success(f"{product['name']} जोड़ा गया!")
+            st.success(f"{product['name']} जोड़ा गया!")जोड़ा गया!")
