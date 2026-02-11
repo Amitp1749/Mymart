@@ -1,6 +1,12 @@
+import os
 import streamlit as st
 
-st.set_page_config(layout="wide")
+st.write("Current working dir:", os.getcwd())
+st.write("Repo files:", os.listdir())
+st.write("Images folder exists?:", os.path.exists("images"))
+
+if os.path.exists("images"):
+    st.write("Images inside images/:", os.listdir("images"))
 
 # ---------- Products Database ----------
 all_products = [
