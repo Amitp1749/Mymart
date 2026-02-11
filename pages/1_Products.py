@@ -14,12 +14,12 @@ def load_uniform_image(path, size=(300, 300)):
 
 # ---------- Products Database ----------
 all_products = [
-    {"name": "बासमती चावल", "cat": "Rice (चावल)", "price": 90, "img": "pages/basmati.jpg"},
-    {"name": "सरसों तेल", "cat": "Oil (तेल)", "price": 160, "img": "pages/sarson.jpg"},
-    {"name": "कोलम चावल", "cat": "Rice (चावल)", "price": 70, "img": "pages/kolam.jpg"},
-    {"name": "रिफाइंड तेल", "cat": "Oil (तेल)", "price": 150, "img": "pages/refined.jpg"},
-    {"name": "बादाम", "cat": "Dry Fruits", "price": 600, "img": "pages/badam.jpg"},
-    {"name": "काजू प्रीमियम", "cat": "Dry Fruits", "price": 800, "img": "pages/kaju.jpg"},
+    {"name": "बासमती चावल", "cat": "Rice (चावल)", "price": 95, "img": "pages/basmati.jpg"},
+    {"name": "सरसों तेल", "cat": "Oil (तेल)", "price": 186, "img": "pages/sarson.jpg"},
+    {"name": "कोलम चावल", "cat": "Rice (चावल)", "price": 320, "img": "pages/kolam.jpg"},
+    {"name": "रिफाइंड तेल", "cat": "Oil (तेल)", "price": 130, "img": "pages/refined.jpg"},
+    {"name": "बादाम", "cat": "Dry Fruits", "price": 800/kg, "img": "pages/badam.jpg"},
+    {"name": "काजू प्रीमियम", "cat": "Dry Fruits", "price": 1200/kg, "img": "pages/kaju.jpg"},
 ]
 
 # ---------- Sidebar ----------
