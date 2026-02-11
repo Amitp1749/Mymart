@@ -32,14 +32,56 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- डेटाबेस (सभी सामान यहाँ हैं) ---
+# --- डेटाबेस (इंटरनेट फोटो लिंक के साथ) ---
 all_products = [
-    {"name": "बासमती चावल", "cat": "Rice (चावल)", "price": 90, "img": "rice1.jpg"},
-    {"name": "कोलम चावल", "cat": "Rice (चावल)", "price": 60, "img": "rice2.jpg"},
-    {"name": "सरसों तेल", "cat": "Oil (तेल)", "price": 160, "img": "mustard_oil.jpg"},
-    {"name": "रिफाइंड तेल", "cat": "Oil (तेल)", "price": 110, "img": "refined_oil.jpg"},
-    {"name": "काजू प्रीमियम", "cat": "Dry Fruits", "price": 800, "img": "kaju.jpg"},
-    {"name": "बादाम", "cat": "Dry Fruits", "price": 600, "img": "badam.jpg"},
+    {
+        "name": "बासमती चावल", 
+        "cat": "Rice (चावल)", 
+        "price": 90, 
+        "img": "C:\Users\asus-pc\Documents\Mymart\बासमती चावल.jpg"
+    },
+    {
+        "name": "सरसों तेल", 
+        "cat": "Oil (तेल)", 
+        "price": 160, 
+        "img": "C:\Users\asus-pc\Documents\Mymart\सरसों तेल .jpg"
+    },
+   {
+        "name": "कोलम चावल", 
+        "cat": "Oil (तेल)", 
+        "price": 160, 
+        "img": "C:\Users\asus-pc\Documents\Mymart\कोलम चावल.jpg"
+    }, 
+    {
+        "name": "रिफाइंड तेल", 
+        "cat": "Oil (तेल)", 
+        "price": 160, 
+        "img": "C:\Users\asus-pc\Documents\Mymart\रिफाइंड तेल.jpg"
+    },
+    {
+        "name": "बादाम", 
+        "cat": "Oil (तेल)", 
+        "price": 160, 
+        "img": "C:\Users\asus-pc\Documents\Mymart\बादाम.jpg"
+    },
+    {
+        "name": "काजू प्रीमियम", 
+        "cat": "Dry Fruits", 
+        "price": 800, 
+        "img": "C:\Users\asus-pc\Documents\Mymart\काजू प्रीमियम.jpg"
+    }
 ]
+
+# --- डिस्प्ले वाला हिस्सा (HTML में सुधार) ---
+for i, product in enumerate(display_list):
+    with cols[i % 3]:
+        st.markdown(f"""
+        <div class="product-card">
+            <img src="{product['img']}" class="product-image">
+            <div class="product-name">{product['name']}</div>
+            <div class="product-price">₹ {product['price']}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
 # --- साइडबार (Shop by Category) ---
 st.sidebar.title("📁 Shop by Category")
